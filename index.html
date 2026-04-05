@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Birthday Gift 🎉</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    }
+
+    img {
+      width: 150px;
+      margin: 10px;
+      border-radius: 10px;
+    }
+
+    .editor {
+      background: white;
+      padding: 15px;
+      margin: 20px;
+      border-radius: 10px;
+    }
+
+    input, textarea {
+      width: 90%;
+      margin: 5px;
+      padding: 8px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1 contenteditable="true">🎉 Happy Birthday, Name! 🎂</h1>
+
+<p contenteditable="true">
+  Write your message here ❤️
+</p>
+
+<!-- Music -->
+<audio controls>
+  <source id="musicSource" src="">
+</audio>
+
+<!-- Video -->
+<video controls width="300">
+  <source id="videoSource" src="">
+</video>
+
+<!-- Images -->
+<div id="gallery"></div>
+
+<!-- EDITOR PANEL -->
+<div class="editor">
+  <h2>✏️ Edit Your Gift</h2>
+
+  <input type="text" id="musicInput" placeholder="Paste music URL">
+  <input type="text" id="videoInput" placeholder="Paste video URL">
+  <textarea id="imageInput" placeholder="Paste image URLs (one per line)"></textarea>
+
+  <button onclick="updateContent()">Update Gift 🎁</button>
+</div>
+
+<script>
+function updateContent() {
+  // Music
+  const musicURL = document.getElementById("musicInput").value;
+  document.getElementById("musicSource").src = musicURL;
+
+  // Video
+  const videoURL = document.getElementById("videoInput").value;
+  document.getElementById("videoSource").src = videoURL;
+
+  // Images
+  const images = document.getElementById("imageInput").value.split("\n");
+  const gallery = document.getElementById("gallery");
+  gallery.innerHTML = "";
+
+  images.forEach(url => {
+    if(url.trim() !== "") {
+      const img = document.createElement("img");
+      img.src = url;
+      gallery.appendChild(img);
+    }
+  });
+}
+</script>
+
+</body>
+</html>
